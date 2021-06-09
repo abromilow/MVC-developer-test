@@ -1,0 +1,27 @@
+﻿@model NetC.JuniorDeveloperExam.Web.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "NetConstruct Blogs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Blogs)
+        {
+            <tr>
+                <td><a href="/blogs/@(item.Id)">@item.Title</a></td>
+                <td>@item.Date</td>
+            </tr>
+        }
+    </tbody>
+</table>

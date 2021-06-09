@@ -1,0 +1,32 @@
+﻿@model NetC.JuniorDeveloperExam.Web.Models.Comment
+
+<div class="reply-block">
+    <div class="link-banner">
+        <a class="js-show-form link" href="javascript:ToggleReplyForm(@Model.Id)" data-comment-id="@Model.Id">Reply to comment</a>
+        @if (Model.Replies != null)
+        {
+            <a class="js-show-replies link" href="javascript:ToggleReplyBlock(@Model.Id)" data-comment-id="@Model.Id">Show Replies (@Model.Replies.Count)</a>
+            <a class="js-hide-replies link" href="javascript:ToggleReplyBlock(@Model.Id)" data-comment-id="@Model.Id" style="display:none">Hide Replies</a>
+        }
+    </div>
+
+    @if (Model.Replies != null)
+    {
+        <div class="js-reply-block replies" data-comment-id="@Model.Id" style="display: none">
+
+            @foreach (var reply in Model.Replies)
+            {
+                var replyNameParts = reply.Name.Split(' ');
+                var replyQueryString = String.Join("+", replyNameParts);
+
+                <div class="reply">
+                    <img class="d-flex mr-3 rounded-circle user-avatar" src="https://eu.ui-avatars.com/api/?name=@replyQueryString" alt="@reply.Name">
+                    <div class="media-body">
+                        <h5 class="mt-0">@reply.Name <small><em>(@reply.Date.ToString("MMMM dd, yyyy - HH:mm"))</em></small></h5>
+                        @reply.Message
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

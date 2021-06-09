@@ -1,0 +1,48 @@
+﻿body {
+    padding-top: 56px;
+}
+
+.user-avatar {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.comment-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+    .comment-block .comment {
+        margin: 0 !important;
+    }
+
+.reply-block {
+    display: flex;
+    flex-direction: column;
+    padding-left: 65px;
+}
+
+    .reply-block .reply {
+        display: flex;
+        margin: 15px 0;
+        background-color: #dddddd;
+    }
+
+    .reply-block .link-banner {
+        background-color: #343a40;
+    }
+
+    .reply-block .link {
+        margin: 0 5px;
+        text-decoration: none;
+        color: white;
+    }
+
+    .reply-block .link:hover {
+        text-decoration: underline;
+    }
+
+.reply-form {
+    padding-left: 65px;
+}
