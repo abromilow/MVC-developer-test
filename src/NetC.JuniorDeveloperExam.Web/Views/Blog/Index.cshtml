@@ -32,29 +32,13 @@
 
             <hr>
 
-            <div id="main"></div>
+            <div id="main" data-blog-id="@Model.Id"></div>
 
             @if (Model.Comments != null)
             {
                 foreach (var comment in Model.Comments)
                 {
-                    var nameParts = comment.Name.Split(' ');
-                    var queryString = String.Join("+", nameParts);
-
-                    <div class="comment-block">
-                        <div class="media mb-4 comment">
-                            <img class="d-flex mr-3 rounded-circle user-avatar" src="https://eu.ui-avatars.com/api/?name=@queryString" alt="@comment.Name">
-                            <div class="media-body">
-                                <h5 class="mt-0">@comment.Name <small><em>(@comment.Date.ToString("MMMM dd, yyyy - HH:mm"))</em></small></h5>
-                                @comment.Message
-                            </div>
-
-
-                        </div>
-                        @Html.Partial("~/Views/Partials/_ReplyBlock.cshtml", comment)
-
-                        @Html.Partial("~/Views/Partials/_ReplyForm.cshtml", new CommentReplyFormViewModel() { BlogId = Model.Id, CommentId = comment.Id })
-                    </div>
+                   
                 }
             }
 
@@ -63,38 +47,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function ToggleReplyForm(commentId) {
-        const showButton = document.querySelector(`.js-show-form[data-comment-id='${commentId}']`);
-        const form = document.querySelector(`.js-reply-form[data-comment-id='${commentId}']`);
-
-        if (form.style.display == "none") {
-            showButton.style.display = "none";
-            form.style.display = "block";
-        }
-        else {
-            showButton.style.display = "inline-block";
-            form.style.display = "none";
-        }
-    }
-
-
-    function ToggleReplyBlock(commentId) {
-        const replyBlock = document.querySelector(`.js-reply-block[data-comment-id='${commentId}']`);
-        const showReplies = document.querySelector(`.js-show-replies[data-comment-id='${commentId}']`);
-        const hideReplies = document.querySelector(`.js-hide-replies[data-comment-id='${commentId}']`);
-
-
-        if (replyBlock.style.display == "none") {
-            replyBlock.style.display = "block"
-            showReplies.style.display = "none"
-            hideReplies.style.display = "inline-block"
-        }
-        else {
-            replyBlock.style.display = "none"
-            showReplies.style.display = "inline-block"
-            hideReplies.style.display = "none"
-        }
-    }
-</script>

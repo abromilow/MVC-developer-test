@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using NetC.JuniorDeveloperExam.Web.ViewModels;
 using System;
+using Newtonsoft.Json;
 
 namespace NetC.JuniorDeveloperExam.Web.Controllers
 {
@@ -14,9 +15,9 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
         public ActionResult Index(int id = 1)
         {
             var blogService = new BlogService();
-            
-               var blogs = blogService.GetAllBlogs();
-            
+
+            var blogs = blogService.GetAllBlogs();
+
 
             var selectedBlog = blogs.FirstOrDefault(x => x.Id == id);
 
@@ -33,7 +34,7 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
                     var blogService = new BlogService();
                     blogService.AddNewComment(comment);
 
-                    return RedirectToAction("Index", "Blog", new { id = comment.BlogId } );
+                    return RedirectToAction("Index", "Blog", new { id = comment.BlogId });
                 }
                 catch (Exception ex)
                 {
@@ -56,21 +57,32 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
                 try
                 {
                     var blogService = new BlogService();
-                    blogService.AddNewReply(reply);
 
-                    return RedirectToAction("Index", "Blog", new { id = reply.BlogId });
+                    return Json(new { Reply = reply, Response = "Success", ResponseCode = 200 });
                 }
                 catch (Exception ex)
                 {
-                   reply.ErrorMessage = ex.Message;
+                    reply.ErrorMessage = ex.Message;
 
-                    return RedirectToAction("Index", "Blog", new { id = reply.BlogId });
+                    return Json(new { Response = "Failed", ResponseCode = 500 });
                 }
             };
 
             reply.ErrorMessage = "There was an error submitting your comment. Please try again";
 
-            return RedirectToAction("Index", "Blog", new { id = reply.BlogId });
+            return Json(new { Response = "Failed", ResponseCode = 500 });
+        }
+
+        [HttpGet]
+        public ActionResult GetCommentsByBlogId(int id)
+        {
+            var blogService = new BlogService();
+
+            var blogs = blogService.GetAllBlogs();
+
+            var selectedBlog = blogs.FirstOrDefault(x => x.Id == id);
+
+            return Json(selectedBlog.Comments, JsonRequestBehavior.AllowGet);
         }
     }
 }

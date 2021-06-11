@@ -12,7 +12,7 @@ namespace NetC.JuniorDeveloperExam.Web.Models
         [Required]
         public string Name { get; set; }
 
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         [Display(Name="Email Address")]
         [Required]

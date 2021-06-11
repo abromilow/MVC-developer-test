@@ -49,7 +49,7 @@ namespace NetC.JuniorDeveloperExam.Web.Services
                         Id = blog.Comments.Count() + 1,
                         Name = comment.Name,
                         Email = comment.Email,
-                        Date = DateTime.Now,
+                        Date = DateTime.Now.ToString(),
                         Message = comment.Message,
                     });
                     break;
@@ -63,8 +63,9 @@ namespace NetC.JuniorDeveloperExam.Web.Services
             }
         }
 
-        public void AddNewReply(CommentReplyFormViewModel reply)
+        public CommentReply AddNewReply(CommentReplyFormViewModel reply)
         {
+            var commentReply = new CommentReply();
             var blogs = AllBlogs;
             foreach (var blog in blogs)
             {
@@ -79,14 +80,13 @@ namespace NetC.JuniorDeveloperExam.Web.Services
                                 comment.Replies = new List<CommentReply>();
                             }
 
-                            comment.Replies.Add(new CommentReply()
-                            {
-                                Id = comment.Replies.Count() + 1,
-                                Name = reply.Name,
-                                Email = reply.Email,
-                                Date = DateTime.Now,
-                                Message = reply.Message,
-                            });
+                            commentReply.Id = comment.Replies.Count() + 1;
+                            commentReply.Name = reply.Name;
+                            commentReply.Email = reply.Email;
+                            commentReply.Date = DateTime.Now.ToString();
+                            commentReply.Message = reply.Message;
+
+                            comment.Replies.Add(commentReply);
                             break;
                         }
                     }
@@ -98,6 +98,8 @@ namespace NetC.JuniorDeveloperExam.Web.Services
             {
                 stream.Write(jsonString);
             }
+
+            return commentReply;
         }
     }
 }

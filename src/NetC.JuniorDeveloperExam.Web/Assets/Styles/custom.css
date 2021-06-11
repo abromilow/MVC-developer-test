@@ -17,30 +17,11 @@
         margin: 0 !important;
     }
 
-.reply-block {
-    display: flex;
-    flex-direction: column;
-    padding-left: 65px;
-}
-
     .reply-block .reply {
         display: flex;
         margin: 15px 0;
         background-color: #dddddd;
-    }
-
-    .reply-block .link-banner {
-        background-color: #343a40;
-    }
-
-    .reply-block .link {
-        margin: 0 5px;
-        text-decoration: none;
-        color: white;
-    }
-
-    .reply-block .link:hover {
-        text-decoration: underline;
+ 
     }
 
 .reply-form {

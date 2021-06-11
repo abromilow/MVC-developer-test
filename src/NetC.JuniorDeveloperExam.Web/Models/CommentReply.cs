@@ -11,7 +11,7 @@ namespace NetC.JuniorDeveloperExam.Web.Models
 
         public string Name { get; set; }
 
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         public string Email { get; set; }
 
