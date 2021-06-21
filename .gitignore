@@ -349,3 +349,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 src/NetC.JuniorDeveloperExam.Web/SiteFiles/dist/
+
+src/NetC.JuniorDeveloperExam.Web/App_Data/
