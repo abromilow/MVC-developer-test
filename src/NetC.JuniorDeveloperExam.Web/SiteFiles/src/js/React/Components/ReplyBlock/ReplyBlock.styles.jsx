@@ -7,17 +7,17 @@ const BlockStyles = styled.div`
 `;
 
 const LinkBannerStyles = styled.div`
-  background-color: #343a40;
+  background-color: var(--darkBlue);
 `;
 
 const LinkStyles = styled.a`
   margin: 0 5px;
   text-decoration: none;
-  color: white;
+  color: var(--white);
 
   &:hover {
     text-decoration: underline;
-    color: white;
+    color: var(--white);
   }
 `;
 

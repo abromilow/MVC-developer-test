@@ -5,6 +5,7 @@ const GlobalStyles = createGlobalStyle`
     --red: #FF4949;
     --black: #2e2e2e;
     --darkBlue: #343a40;
+    --white: #ffffff;
     }
 
 .error {

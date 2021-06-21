@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import useForm from '../../../Utils/useForm';
 import CommentContext from '../Context/CommentContext';
-import CommentFormStyles from './CommentForm.styles';
 
 const CommentForm = ({ blogId }) => {
   const [comments, setComments] = useContext(CommentContext);
@@ -41,7 +40,7 @@ const CommentForm = ({ blogId }) => {
   };
 
   return (
-    <CommentFormStyles className='card my-4'>
+    <div className='card my-4'>
       <h5 className='card-header'>Leave a Comment:</h5>
       {error.Message && (
         <h5 className='error'>
@@ -94,7 +93,7 @@ const CommentForm = ({ blogId }) => {
           </button>
         </form>
       </div>
-    </CommentFormStyles>
+    </div>
   );
 };
 
