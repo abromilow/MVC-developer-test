@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import GlobalStyles from './Styles/GlobalStyles';
 import CommentList from './Components/CommentList/CommentList';
 import CommentForm from './Components/CommentForm/CommentForm';
 import CommentContext from './Components/Context/CommentContext';
@@ -23,6 +24,7 @@ const App = ({ blogId }) => {
 
   return (
     <>
+      <GlobalStyles />
       <CommentList blogId={blogId} comments={comments} />
       <CommentForm blogId={blogId} />
     </>
