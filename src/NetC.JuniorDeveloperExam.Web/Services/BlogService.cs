@@ -49,7 +49,7 @@ namespace NetC.JuniorDeveloperExam.Web.Services
                         Id = blog.Comments.Count() + 1,
                         Name = comment.Name,
                         Email = comment.Email,
-                        Date = DateTime.Now.ToString(),
+                        Date = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"),
                         Message = comment.Message,
                     });
                     break;
@@ -83,7 +83,7 @@ namespace NetC.JuniorDeveloperExam.Web.Services
                             commentReply.Id = comment.Replies.Count() + 1;
                             commentReply.Name = reply.Name;
                             commentReply.Email = reply.Email;
-                            commentReply.Date = DateTime.Now.ToString();
+                            commentReply.Date = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
                             commentReply.Message = reply.Message;
 
                             comment.Replies.Add(commentReply);
@@ -100,6 +100,13 @@ namespace NetC.JuniorDeveloperExam.Web.Services
             }
 
             return commentReply;
+        }
+
+        public List<Comment> GetCommentsByBlogId(int blogId)
+        {
+            var blog = GetAllBlogs().FirstOrDefault(x => x.Id == blogId);
+
+            return blog.Comments;
         }
     }
 }

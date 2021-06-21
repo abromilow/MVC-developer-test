@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import ReplyContext from '../Context/ReplyContext';
 import Reply from '../Reply/Reply';
 import ReplyForm from '../ReplyForm/ReplyForm';
 import { ReplyBlockStyles } from './ReplyBlock.styles';
 
 const ReplyBlock = ({ blogId, commentId, replies }) => {
   const [showReplies, setShowReplies] = useState(false);
-  const [showForm, setShowForm] = useState(false);
-
+  const [showForm, setShowForm] = useContext(ReplyContext);
   const ToggleReplies = (e, toggle) => {
     e.preventDefault();
 

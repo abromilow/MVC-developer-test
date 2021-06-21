@@ -34,15 +34,7 @@
 
             <div id="main" data-blog-id="@Model.Id"></div>
 
-            @if (Model.Comments != null)
-            {
-                foreach (var comment in Model.Comments)
-                {
-                   
-                }
-            }
 
-            @Html.Partial("~/Views/Partials/_CommentForm.cshtml", new CommentFormViewModel() { BlogId = Model.Id })
 
         </div>
     </div>

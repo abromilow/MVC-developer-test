@@ -261,9 +261,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Partials\_Nav.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
-    <Content Include="Views\Partials\_CommentForm.cshtml" />
-    <Content Include="Views\Partials\_ReplyForm.cshtml" />
-    <Content Include="Views\Partials\_ReplyBlock.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

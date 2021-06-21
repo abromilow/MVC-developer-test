@@ -34,7 +34,9 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
                     var blogService = new BlogService();
                     blogService.AddNewComment(comment);
 
-                    return RedirectToAction("Index", "Blog", new { id = comment.BlogId });
+                    var comments = blogService.GetCommentsByBlogId(comment.BlogId);
+
+                    return Json(new { Comments = comments, Response = "Success", ResponseCode = 200 });
                 }
                 catch (Exception ex)
                 {
@@ -57,8 +59,10 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
                 try
                 {
                     var blogService = new BlogService();
+                    blogService.AddNewReply(reply);
+                    var comments = blogService.GetCommentsByBlogId(reply.BlogId);
 
-                    return Json(new { Reply = reply, Response = "Success", ResponseCode = 200 });
+                    return Json(new { Comments = comments, Response = "Success", ResponseCode = 200 });
                 }
                 catch (Exception ex)
                 {

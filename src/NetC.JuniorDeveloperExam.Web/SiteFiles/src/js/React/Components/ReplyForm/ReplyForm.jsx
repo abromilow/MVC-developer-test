@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
-import updateComments from '../../../Utils/updateComments';
 import useForm from '../../../Utils/useForm';
 import CommentContext from '../Context/CommentContext';
+import ReplyContext from '../Context/ReplyContext';
 
 const ReplyForm = ({ blogId, commentId }) => {
   const [comments, setComments] = useContext(CommentContext);
-  const { values, updateValue } = useForm({
+  const [showForm, setShowForm] = useContext(ReplyContext);
+  const { values, updateValue, clearValues } = useForm({
     Name: '',
     Email: '',
     Message: '',
@@ -28,7 +29,9 @@ const ReplyForm = ({ blogId, commentId }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.ResponseCode == 200) {
-          const newComments = updateComments(comments, data.Reply);
+          setComments(data.Comments);
+          clearValues();
+          setShowForm(false);
         }
       });
   };
