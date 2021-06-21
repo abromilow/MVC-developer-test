@@ -42,13 +42,12 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
                 {
                     comment.ErrorMessage = ex.Message;
 
-                    return RedirectToAction("Index", "Blog", new { id = comment.BlogId });
+                    return Json(new { Response = "Failed", ResponseCode = 555, Error = ex.Message });
                 }
             };
 
-            comment.ErrorMessage = "There was an error submitting your comment. Please try again";
 
-            return RedirectToAction("Index", "Blog", new { id = comment.BlogId });
+            return Json(new { Response = "Failed", ResponseCode = 550, Error = "Invalid Submission" });
         }
 
         [HttpPost]
@@ -66,15 +65,13 @@ namespace NetC.JuniorDeveloperExam.Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    reply.ErrorMessage = ex.Message;
 
-                    return Json(new { Response = "Failed", ResponseCode = 500 });
+                    return Json(new { Response = "Failed", ResponseCode = 555, Error = ex.Message });
                 }
             };
 
-            reply.ErrorMessage = "There was an error submitting your comment. Please try again";
 
-            return Json(new { Response = "Failed", ResponseCode = 500 });
+            return Json(new { Response = "Failed", ResponseCode = 550, Error = "Invalid Submission" });
         }
 
         [HttpGet]

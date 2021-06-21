@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
-// import updateComments from '../../../Utils/updateComments';
 import useForm from '../../../Utils/useForm';
 import CommentContext from '../Context/CommentContext';
+import CommentFormStyles from './CommentForm.styles';
 
 const CommentForm = ({ blogId }) => {
   const [comments, setComments] = useContext(CommentContext);
+  const [error, setError] = useState({});
   const { values, updateValue, clearValues } = useForm({
     Name: '',
     Email: '',
@@ -26,16 +27,27 @@ const CommentForm = ({ blogId }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data.Error);
         if (data.ResponseCode == 200) {
           setComments(data.Comments);
           clearValues();
+        } else if (data.ResponseCode == 555 || data.ResponseCode == 550) {
+          setError({
+            Code: data.ResponseCode,
+            Message: data.Error,
+          });
         }
       });
   };
 
   return (
-    <div className='card my-4'>
+    <CommentFormStyles className='card my-4'>
       <h5 className='card-header'>Leave a Comment:</h5>
+      {error.Message && (
+        <h5 className='error'>
+          {error.Code} - {error.Message}
+        </h5>
+      )}
       <div className='card-body'>
         <form onSubmit={(e) => submitForm(e)}>
           <div className='form-row'>
@@ -82,7 +94,7 @@ const CommentForm = ({ blogId }) => {
           </button>
         </form>
       </div>
-    </div>
+    </CommentFormStyles>
   );
 };
 
